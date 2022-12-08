@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name
+                this.age = age
+
+            }
+
+            eating() {
+                console.log(this.name + 'eating')
+            }
+
+            running() {
+                console.log(this.name + 'running')
+            }
+
+            personMethod() {
+                console.log('处理逻辑11')
+                console.log('处理逻辑22')
+                console.log('处理逻辑33')
+            }
+
+            static staticMethod() {
+                console.log('PersonStaticMethod')
+
+            }
+
+        }
+
+        // super的使用位置有三个：子类的构造函数，实例方法，静态方法
+
+        class Student extends Person {
+            // 子类在构造方法中，在使用this之前，必须调用supper()
+            constructor(name, age, sno) {
+                super(name, age)  // 调用父类的构造函数
+                // this.name = name
+                // this.age = age
+                this.sno = sno
+
+            }
+
+            studying() {
+                console.log(this.name + 'studying')
+            }
+
+            // 重写personMethod方法
+            personMethod() {
+                super.personMethod()  // 复用父类的处理逻辑
+                console.log('处理逻辑888')  // 自己的处理逻辑
+
+            }
+
+            // 重写staticMethod方法
+
+            static staticMethod() {
+                super.staticMethod()  // 复用父类的静态方法
+
+                console.log('StudentStaticMethod')
+
+            }
+
+
+        }
+        const stu = new Student('张三', '18', '0000')
+        console.log(stu)
+        stu.eating()
+        stu.personMethod()
+        Student.staticMethod()  // 子类调用父类的静态方法
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- js中的call apply bind是用c++实现的 -->
+  <script>
+    Function.prototype.myBind = function (thisArg, ...argArray) {
+      //  1.获取调用的函数
+      var fn = this
+      // fn()
+
+      // 2.对thisArg转成对象类型，防止它传入的是一个非对象类型
+      thisArg = (thisArg !== null && thisArg !== undefined) ? Object(thisArg) : window
+
+      // 3.将this绑定到传入的对象上
+      function proxyFn(...arg) {
+        thisArg.fn = fn
+        var newArg = [...argArray, ...arg]
+        var result = thisArg.fn(...newArg)
+        delete thisArg.fn
+        return result
+
+      }
+
+      // delete thisArg.fn
+
+      // 4.返回结果
+      return proxyFn
+
+
+    }
+
+    var obj = {
+      name: 'obj'
+    }
+
+    function foo() {
+      console.log(this)
+      console.log('foo函数被执行了')
+    }
+    // foo.call()
+    var bar = foo.myBind(obj)
+    bar()
+  </script>
+</body>
+
+</html>

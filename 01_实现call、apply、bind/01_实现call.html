@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- js中的call apply bind是用c++实现的 -->
+  <script>
+    Function.prototype.myCall = function (thisArg, ...arg) {
+      //  1.获取调用的函数
+      var fn = this
+
+      // 2.对thisArg转成对象类型，防止它传入的是一个非对象类型
+      thisArg = (thisArg !== null && thisArg !== undefined) ? Object(thisArg) : window
+
+      // 3.调用需要被执行的函数
+      thisArg.fn = fn
+      var result = thisArg.fn(...arg)
+      delete thisArg.fn
+
+      // 4.返回结果
+      return result
+
+
+    }
+
+    var obj = {
+      name: 'obj'
+    }
+
+    function foo() {
+      console.log(this)
+      console.log('foo函数被执行了')
+    }
+    // foo.call()
+    foo.myCall(obj)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function add(x, y, z) {
+      return x + y + z
+    }
+
+    var result1 = add(10, 20, 30)
+    console.log(result1)
+
+    function sum(x) {
+      return function (y) {
+        return function (z) {
+          return x + y + z
+        }
+      }
+    }
+
+    var result2 = sum(10)(20)(30)
+    console.log(result2)
+
+    // 简化sum函数 箭头函数只有一个参数可以省略括号，返回值不换行可以省略括号和return
+    // sum = x => y => z => x + y + z
+
+
+
+  </script>
+
+</body>
+
+</html>

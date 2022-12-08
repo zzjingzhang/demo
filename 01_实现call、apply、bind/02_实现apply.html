@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- js中的call apply bind是用c++实现的 -->
+  <script>
+    Function.prototype.myApply = function (thisArg, argArray) {
+      // 1.拿到要调用的函数
+      var fn = this
+
+      // 2.处理绑定参数，将绑定参数转为对象，防止传入的参数不是对象
+      thisArg = (thisArg !== undefined && thisArg !== null) ? Object(thisArg) : window
+
+      // 3 将this绑定到传入的对象上
+      var s = Symbol()
+      thisArg.s = fn
+      argArray = argArray || []
+      var result = thisArg.s(...argArray)
+      delete thisArg.s
+      console.log(argArray)
+
+
+      // 4.返回结果
+      return result
+
+
+    }
+
+    var obj = {
+      name: 'obj'
+    }
+
+    function foo() {
+      console.log(this)
+      console.log('foo函数被执行了')
+    }
+    // foo.call()
+    foo.myApply(obj, [10, 20, 30])
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var message = 'wmsg'
+    // with语句会形成自己的作用域
+    var obj = {
+      name: 'obj',
+      message: 'omsg'
+    }
+    function foo() {
+      function bar() {
+        console.log(message)  // 打印的是全局的message
+        with (obj) {
+          console.log(message)  // 打印的是obj里面的message
+        }
+      }
+      bar()
+    }
+    foo()
+  </script>
+</body>
+
+</html>

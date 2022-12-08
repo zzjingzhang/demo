@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        class Person {
+
+
+        }
+
+        class Runner {
+            running() {
+
+            }
+        }
+
+        class Eater {
+            eating() {
+
+            }
+        }
+
+
+
+        function mixinRunner(BaseClass) {
+            class NewClass extends BaseClass {
+                running() {
+                    console.log('running')
+                }
+            }
+
+            return NewClass
+
+        }
+        // 在js中类只能有一个父类 ：单继承
+        class Student extends Person {
+
+        }
+
+        var NewStudent = mixinRunner(Student)
+        var ns = new NewStudent()
+        ns.running()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function log(date, type, message) {
+      console.log(`[${date.getHours()}:${date.getMinutes()}][${type}]:[${message}]`)
+    }
+
+    log(new Date(), 'debug', '1111')
+    log(new Date(), 'debug', '2222')
+    log(new Date(), 'debug', '3333')
+    log(new Date(), 'debug', '4444')
+    log(new Date(), 'debug', '5555')
+
+    // 优化
+    log2 = date => type => message => {
+      console.log(`[${date.getHours()}:${date.getMinutes()}][${type}]:[${message}]`)
+    }
+    var logT = log2(new Date())
+    var logBug = logT('debug')
+    logBug('1111')
+    logBug('2222')
+    logBug('3333')
+    logBug('4444')
+    logBug('5555')
+
+  </script>
+
+</body>
+
+</html>

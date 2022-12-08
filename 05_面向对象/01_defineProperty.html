@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            name: 'obj',
+            age: 18
+        }
+        Object.defineProperty(obj, 'height', {
+            value: 1.88
+            // 通过 Object.defineProperty 添加的属性 ，以下这三个属性默认是false
+            // writable:true,
+            // enumerable:true,
+            // configurable:true
+        })
+        console.log(obj)
+    </script>
+
+</body>
+
+</html>

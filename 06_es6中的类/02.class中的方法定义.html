@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name
+                this.age = age
+                this._address = 'wuhan'
+
+            }
+            eating() {
+                console.log(this.name + 'eating')
+            }
+
+            running() {
+                console.log(this.name + 'running')
+            }
+
+            // 类的访问器方法
+            get address() {
+                console.log('拦截访问操作')
+                return this._address
+
+            }
+
+            set address(newAddress) {
+                console.log('拦截设置操作')
+                this._address = newAddress
+            }
+
+            // 类的静态方法(类方法)
+            // Person.randomPerson()  类的静态方法可以直接由类调用，不需要new
+            static randomPerson() {
+                return new Person()
+
+            }
+        }
+
+        const p = new Person()
+        console.log(p.address)
+        p.address = '33'
+        console.log(p.address)
+    </script>
+
+</body>
+
+</html>
