@@ -1,0 +1,7 @@
+module.exports = {
+    name: 'abc',
+    age: 18,
+    sum: function (num1, num2) {
+        return num1 + num2
+    }
+}

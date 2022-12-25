@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <button id="cancel">取消</button>
+
+    <!-- <script src="./06_throttle-v1-基本实现.js"></script> -->
+    <!-- <script src="./07_throttle-v2-leading实现.js"></script> -->
+    <!-- <script src="./08_throttle-v3-trailing实现.js"></script> -->
+    <!-- <script src="./09_throttle-v4-this-参数.js"></script> -->
+    <!-- <script src="./10_throttle-v5-取消功能.js"></script> -->
+    <script src="./11_throttle-v6-返回值.js"></script>
+    <script>
+        const inputEl = document.querySelector('input');
+        let counter = 0;
+        const inputChange = function (event) {
+            console.log(this)
+            console.log(event)
+            console.log(`发送了第${++counter}次网络请求`)
+            return '1111'
+        }
+        const throttleChange = throttle(inputChange, 3000, {
+            leading: true, trailing: true,
+            resultCallback: function (res) {
+                console.log(res, '返回值')
+            }
+        })
+        // 节流处理
+        inputEl.oninput = throttleChange
+
+        // 取消功能
+        const cancelBtn = document.querySelector('#cancel')
+        cancelBtn.onclick = function () {
+            throttleChange.cancel()
+        }
+    </script>
+
+</body>
+
+</html>
